@@ -22,7 +22,6 @@ Let's simply include the full source here and add inline documentation.
 ```python
 from sklearn.datasets.samples_generator import make_blobs
 import numpy as np
-import matplotlib.pyplot as plt
 np.random.seed(6)
 import math
 from collections import Counter
@@ -36,11 +35,11 @@ The above imports suggest that we'll be performing a K-means clustering experime
 Before we go on, let's import Seaborn so that I don't become physically ill looking at default matplotlib output:
 
 ```python
+import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set(style='darkgrid')
-sns.set_palette("husl")
-colors = ["windows blue", "amber", "greyish", "faded green", "dusty purple"]
-sns.palplot(sns.xkcd_palette(colors))
+#matplotlib.rc('image', cmap=plt.cm.tab10)
+sns.set_palette("tab20c",plt.cm.tab20c.N )
 ```
 
 That's better.
