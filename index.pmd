@@ -38,6 +38,9 @@ Before we go on, let's import Seaborn so that I don't become physically ill look
 ```python
 import seaborn as sns
 sns.set(style='darkgrid')
+sns.set_palette("husl")
+colors = ["windows blue", "amber", "greyish", "faded green", "dusty purple"]
+sns.palplot(sns.xkcd_palette(colors))
 ```
 
 That's better.
@@ -64,7 +67,7 @@ x_type_two, Y_type_two_labels = datasets.make_classification(n_samples=5000,
                                           random_state= 101)
 ```
 
-The above code generates our data.
+This generates our second dataset. It consists of 5000 points from 2 classes. Each point 
 
 ```python
 plt.figure(figsize=(15,8))
