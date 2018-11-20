@@ -17,33 +17,91 @@ with open('pythonKMC.ipynb') as nb:
 
 ```
 
-Now that we have the source code loaded, let's explore it one block at a time. Let's see how many cells we're looking at first:
+Let's simply include the full source here and add inline documentation.
 
 ```python
-len(src)
+from sklearn.datasets.samples_generator import make_blobs
+import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(6)
+import math
+from collections import Counter
+from sklearn import datasets
+#Default plot params
+from sklearn.cluster import KMeans
 ```
 
-Cell 1
-------
+The above imports suggest that we'll be performing a K-means clustering experiment using generated datasets.
+
+Before we go on, let's import Seaborn so that I don't become physically ill looking at default matplotlib output:
 
 ```python
-print(src[0])
+import seaborn as sns
+sns.set(style='darkgrid')
 ```
 
-This is a straightforward set of Python imports. There are a few hints here about what the rest of the program may be doing.
-
-1. We're likely making plots.
-2. We're likely experimenting on built-in datasets or generating our own.
-3. The imports suggest this will be a K-means clusting experiment.
-
-Cell 2
-------
+That's better.
 
 ```python
-print(src[1])
+centers_type_one = [(-10, 10), (0, -5), (10, 5)]
+x_type_one, Y_type_one_labels = datasets.make_blobs(n_samples=5000,
+                                centers=centers_type_one,
+                                cluster_std=3,
+                                random_state=2)
 ```
 
+This generates our first dataset. It consists of 5000 points clustered around 3 different means, with a standard deviation of 3 about each center.
 
 
+```python
+x_type_two, Y_type_two_labels = datasets.make_classification(n_samples=5000,
+                                          n_features=2, n_redundant=0,
+                                          n_informative=2,
+                                          n_classes=2,
+                                          n_clusters_per_class=2,
+                                          class_sep=3,
+                                          shuffle=True,
+                                          random_state= 101)
+```
+
+The above code generates our data.
+
+```python
+plt.figure(figsize=(15,8))
+plt.subplot(121, title='"type_one" K-Means')
+plt.scatter(x_type_one[:,0],x_type_one[:,1],marker='o',c =
+Y_type_one_labels )
+plt.subplot(122, title='"type_two" K-Means')
+plt.scatter(x_type_two[:,0],x_type_two[:,1],marker='o',c =
+Y_type_two_labels )
+plt.show()
 
 
+#Predict K-Means cluster membership
+km_type_one = KMeans(n_clusters=3,
+random_state=2).fit_predict(x_type_one)
+km_type_two = KMeans(n_clusters=2,
+random_state=2).fit_predict(x_type_two)
+
+plt.figure(figsize=(15,8))
+plt.subplot(121, title='"type_one" K-Means')
+plt.scatter(x_type_one[:,0], x_type_one[:,1], c=km_type_one)
+plt.subplot(122, title='"type_two" K-Means')
+plt.scatter(x_type_two[:,0], x_type_two[:,1], c=km_type_two)
+
+
+# I have chosed M last samples (if you look at cell 8 and cell 9 in this notebook)
+M = 500  
+
+#Predict K-Means cluster membership
+km_type_one = KMeans(n_clusters=3,
+random_state=2).fit_predict(x_type_one[-M:])
+km_type_two = KMeans(n_clusters=2,
+random_state=2).fit_predict(x_type_two[-M:])
+
+plt.figure(figsize=(15,8))
+plt.subplot(121, title='"type_one" K-Means')
+plt.scatter(x_type_one[-M:,0], x_type_one[-M:,1], c=km_type_one)
+plt.subplot(122, title='"type_two" K-Means')
+plt.scatter(x_type_two[-M:,0], x_type_two[-M:,1], c=km_type_two)
+```
