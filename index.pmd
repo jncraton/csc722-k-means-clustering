@@ -1,7 +1,10 @@
 % K-means Clustering
 % Jon Craton
 
-Let's first explore the Jupyter notebook. I've opted to do this without using Jupyter directly, as I simply prefer other tools.
+For this project, I have been asked to document a Jupyer notebook, and then make some parameter adjustments to explore subsequent behavior. Let's first explore the Jupyter notebook. I've opted to do this without using Jupyter directly, as I simply prefer other tools.
+
+Documentation
+=============
 
 We can extract the source code from the supplied notebook quite easily:
 
@@ -14,10 +17,33 @@ with open('pythonKMC.ipynb') as nb:
 
 ```
 
-Now that we have the source code loaded, let's explore it one block at a time.
+Now that we have the source code loaded, let's explore it one block at a time. Let's see how many cells we're looking at first:
 
 ```python
-src[0]
+len(src)
 ```
+
+Cell 1
+------
+
+```python
+print(src[0])
+```
+
+This is a straightforward set of Python imports. There are a few hints here about what the rest of the program may be doing.
+
+1. We're likely making plots.
+2. We're likely experimenting on built-in datasets or generating our own.
+3. The imports suggest this will be a K-means clusting experiment.
+
+Cell 2
+------
+
+```python
+print(src[1])
+```
+
+
+
 
 
