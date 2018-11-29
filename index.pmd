@@ -23,7 +23,7 @@ with open('pythonKMC.ipynb') as nb:
 Documentation
 =============
 
-Let's simply include the full source here and add inline documentation.
+Let's simply include the full source here and add inline documentation to the original file.
 
 Imports
 -------
@@ -93,35 +93,48 @@ We now train a K-means clustering model.
 
 ### Using all training data (n=5000)
 
-```python
-#Predict K-Means cluster membership
+#### Type 1
+
+```python,results='hidden'
 km_type_one = KMeans(n_clusters=3,
 random_state=2).fit_predict(x_type_one)
+plt.scatter(x_type_one[:,0], x_type_one[:,1], c=km_type_one)
+```
+
+#### Type 2
+
+```python,results='hidden'
 km_type_two = KMeans(n_clusters=2,
 random_state=2).fit_predict(x_type_two)
-
-plt.figure(figsize=(15,8))
-plt.subplot(121, title='"type_one" K-Means')
-plt.scatter(x_type_one[:,0], x_type_one[:,1], c=km_type_one)
-plt.subplot(122, title='"type_two" K-Means')
 plt.scatter(x_type_two[:,0], x_type_two[:,1], c=km_type_two)
 ```
 
 ### Using reduced training data (n=500)
 
 ```python
-# I have chosed M last samples (if you look at cell 8 and cell 9 in this notebook)
 M = 500  
+```
 
-#Predict K-Means cluster membership
+#### Type 1
+
+```python,results='hidden'
 km_type_one = KMeans(n_clusters=3,
 random_state=2).fit_predict(x_type_one[-M:])
+plt.scatter(x_type_one[-M:,0], x_type_one[-M:,1], c=km_type_one)
+```
+
+#### Type 2
+
+```python,results='hidden'
 km_type_two = KMeans(n_clusters=2,
 random_state=2).fit_predict(x_type_two[-M:])
-
-plt.figure(figsize=(15,8))
-plt.subplot(121, title='"type_one" K-Means')
-plt.scatter(x_type_one[-M:,0], x_type_one[-M:,1], c=km_type_one)
-plt.subplot(122, title='"type_two" K-Means')
 plt.scatter(x_type_two[-M:,0], x_type_two[-M:,1], c=km_type_two)
 ```
+
+The overall purpose of this code was to generate two different datasets, train a K-means model to identify clusters, and then plot the membership of values in these clusters.
+
+Experiments
+===========
+
+
+
