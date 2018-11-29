@@ -44,6 +44,8 @@ Data Generation
 
 Now let's generate some test data. It consists of 5000 points clustered around 3 different means, with a standard deviation of 3 about each center.
 
+### Type 1
+
 ```python
 centers_type_one = [(-10, 10), (0, -5), (10, 5)]
 x_type_one, Y_type_one_labels = datasets.make_blobs(n_samples=5000,
@@ -52,7 +54,16 @@ x_type_one, Y_type_one_labels = datasets.make_blobs(n_samples=5000,
                                 random_state=2)
 ```
 
-Let's generate a second dataset. It consists of 5000 points from 2 classes. Each point 
+Let's plot that:
+
+```python,results='hidden'
+plt.scatter(x_type_one[:,0],x_type_one[:,1],marker='o',c =
+Y_type_one_labels )
+```
+
+### Type 2
+
+Let's generate a second dataset. It consists of 5000 points from 2 classes. Each class consists of two clusters, so we will have 4 clusters total, with 2 from each class.
 
 ```python
 x_type_two, Y_type_two_labels = datasets.make_classification(n_samples=5000,
@@ -65,20 +76,11 @@ x_type_two, Y_type_two_labels = datasets.make_classification(n_samples=5000,
                                           random_state= 101)
 ```
 
-Data Plots
-----------
+And plot that:
 
-Now let's plot our first datasets:
-
-```python
-plt.figure(figsize=(15,8))
-plt.subplot(121, title='"type_one" K-Means')
-plt.scatter(x_type_one[:,0],x_type_one[:,1],marker='o',c =
-Y_type_one_labels )
-plt.subplot(122, title='"type_two" K-Means')
+```python,results='hidden'
 plt.scatter(x_type_two[:,0],x_type_two[:,1],marker='o',c =
 Y_type_two_labels )
-plt.show()
 ```
 
 K-Means Training
