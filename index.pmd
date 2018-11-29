@@ -15,7 +15,10 @@ with open('pythonKMC.ipynb') as nb:
   content = json.load(nb)
   src = [''.join(c['source']) for c in content['cells']]
 
+[print(line) for line in src[:5]]
 ```
+
+…
 
 Documentation
 =============
