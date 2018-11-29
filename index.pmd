@@ -79,8 +79,16 @@ plt.subplot(122, title='"type_two" K-Means')
 plt.scatter(x_type_two[:,0],x_type_two[:,1],marker='o',c =
 Y_type_two_labels )
 plt.show()
+```
 
+K-Means Training
+----------------
 
+We now train a K-means clustering model.
+
+### Using all training data (n=5000)
+
+```python
 #Predict K-Means cluster membership
 km_type_one = KMeans(n_clusters=3,
 random_state=2).fit_predict(x_type_one)
@@ -92,8 +100,11 @@ plt.subplot(121, title='"type_one" K-Means')
 plt.scatter(x_type_one[:,0], x_type_one[:,1], c=km_type_one)
 plt.subplot(122, title='"type_two" K-Means')
 plt.scatter(x_type_two[:,0], x_type_two[:,1], c=km_type_two)
+```
 
+### Using reduced training data (n=500)
 
+```python
 # I have chosed M last samples (if you look at cell 8 and cell 9 in this notebook)
 M = 500  
 
