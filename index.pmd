@@ -133,8 +133,54 @@ plt.scatter(x_type_two[-M:,0], x_type_two[-M:,1], c=km_type_two)
 
 The overall purpose of this code was to generate two different datasets, train a K-means model to identify clusters, and then plot the membership of values in these clusters.
 
-Experiments
-===========
+Impact of Cluster δ
+===================
 
+Let's explore the impact of adjusting the cluster σ.
 
+```python
+from sklearn.metrics import accuracy_score,hamming_loss
+
+for σ in [.5,1,1.5,2,2.5,3]:
+  centers_type_one = [(-10, 10), (0, -5), (10, 5)]
+  x, Y = datasets.make_blobs(n_samples=5000,
+                             centers=centers_type_one,
+                             cluster_std=σ,
+                             random_state=2)
+  
+  km = KMeans(n_clusters=3,
+  random_state=2).fit_predict(x)
+  plt.scatter(x[:,0], x[:,1], c=km)
+
+  plt.title("σ=%.01f" % (σ))
+  plt.show()
+```
+
+We can see that as we increase σ, our clusters begin to overlap, and we start to see mispredictions.
+
+Impact of Class Separation
+==========================
+
+```python
+from sklearn.metrics import accuracy_score,hamming_loss
+
+for sep in [.5,1,1.5,2,2.5,3]:
+  centers_type_one = [(-10, 10), (0, -5), (10, 5)]
+  x, Y = datasets.make_classification(n_samples=5000,
+                                      n_features=2, n_redundant=0,
+                                      n_informative=2,
+                                      n_classes=2,
+                                      n_clusters_per_class=2,
+                                      class_sep=sep,
+                                      shuffle=True,
+                                      random_state= 101)  
+  km = KMeans(n_clusters=2,
+  random_state=2).fit_predict(x)
+  plt.scatter(x[:,0], x[:,1], c=km)
+
+  plt.title("class_sep=%.01f" % (sep))
+  plt.show()
+```
+
+We see that the impact of class separation is the opposite of σ. When the class separation is too small, the model is unable to distinguish between the groups.
 
