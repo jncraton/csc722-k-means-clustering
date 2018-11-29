@@ -184,3 +184,33 @@ for sep in [.5,1,1.5,2,2.5,3]:
 
 We see that the impact of class separation is the opposite of σ. When the class separation is too small, the model is unable to distinguish between the groups.
 
+Clusters Per Class
+==================
+
+```python
+from sklearn.metrics import accuracy_score,hamming_loss
+
+for cpc in [1,2]:
+  centers_type_one = [(-10, 10), (0, -5), (10, 5)]
+  x, Y = datasets.make_classification(n_samples=5000,
+                                      n_features=2, n_redundant=0,
+                                      n_informative=2,
+                                      n_classes=2,
+                                      n_clusters_per_class=cpc,
+                                      class_sep=2,
+                                      shuffle=True,
+                                      random_state= 101)  
+  km = KMeans(n_clusters=2,
+  random_state=2).fit_predict(x)
+
+  plt.scatter(x[:,0],x[:,1],marker='o',c = Y )
+  plt.title("Dataset, clusters_per_class=%.01f" % (cpc))
+  plt.show()
+  
+  plt.scatter(x[:,0], x[:,1], c=km)
+  plt.title("K-means clusters, clusters_per_class=%.01f" % (cpc))
+  plt.show()
+```
+
+As the name implies, the number of clusters per class impact how many distinct groupings we see for each class in our plot.
+
