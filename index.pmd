@@ -3,8 +3,8 @@
 
 For this project, I have been asked to document a Jupyer notebook, and then make some parameter adjustments to explore subsequent behavior. Let's first explore the Jupyter notebook. I've opted to do this without using Jupyter directly, as I simply prefer other tools.
 
-Documentation
-=============
+Code Extraction
+===============
 
 We can extract the source code from the supplied notebook quite easily:
 
@@ -17,7 +17,15 @@ with open('pythonKMC.ipynb') as nb:
 
 ```
 
+Documentation
+=============
+
 Let's simply include the full source here and add inline documentation.
+
+Imports
+-------
+
+We'll start out with a set of imports suggesting that we'll be performing a K-means clustering experiment using generated datasets.
 
 ```python
 from sklearn.datasets.samples_generator import make_blobs
@@ -28,21 +36,13 @@ from collections import Counter
 from sklearn import datasets
 #Default plot params
 from sklearn.cluster import KMeans
-```
-
-The above imports suggest that we'll be performing a K-means clustering experiment using generated datasets.
-
-Before we go on, let's import Seaborn so that I don't become physically ill looking at default matplotlib output:
-
-```python
 import matplotlib.pyplot as plt
-import seaborn as sns
-sns.set(style='darkgrid')
-#matplotlib.rc('image', cmap=plt.cm.tab10)
-sns.set_palette("tab20c",plt.cm.tab20c.N )
 ```
 
-That's better.
+Data Generation
+---------------
+
+Now let's generate some test data. It consists of 5000 points clustered around 3 different means, with a standard deviation of 3 about each center.
 
 ```python
 centers_type_one = [(-10, 10), (0, -5), (10, 5)]
@@ -52,8 +52,7 @@ x_type_one, Y_type_one_labels = datasets.make_blobs(n_samples=5000,
                                 random_state=2)
 ```
 
-This generates our first dataset. It consists of 5000 points clustered around 3 different means, with a standard deviation of 3 about each center.
-
+Let's generate a second dataset. It consists of 5000 points from 2 classes. Each point 
 
 ```python
 x_type_two, Y_type_two_labels = datasets.make_classification(n_samples=5000,
@@ -66,7 +65,10 @@ x_type_two, Y_type_two_labels = datasets.make_classification(n_samples=5000,
                                           random_state= 101)
 ```
 
-This generates our second dataset. It consists of 5000 points from 2 classes. Each point 
+Data Plots
+----------
+
+Now let's plot our first datasets:
 
 ```python
 plt.figure(figsize=(15,8))
