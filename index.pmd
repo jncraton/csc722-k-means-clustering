@@ -90,6 +90,10 @@ K-Means Training
 
 We now train a K-means clustering model.
 
+K-means clusting is an unsupervised learning model. It seeks to partition our events into k groups. These groups are defined by the center of mass of the events. Ideally, this allows us to reduce a large sample into just a few points that are representative of a few groups present in our data set.
+
+Let's take a look at how this appears in practice.
+
 ### Using all training data (n=5000)
 
 #### Type 1
