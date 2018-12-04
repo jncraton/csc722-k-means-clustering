@@ -104,6 +104,8 @@ random_state=2).fit_predict(x_type_one)
 plt.scatter(x_type_one[:,0], x_type_one[:,1], c=km_type_one)
 ```
 
+This shows that our model has correctly partitioned our samples into 3 clusters that largely correlate with our original classes.
+
 #### Type 2
 
 ```python,results='hidden'
@@ -111,6 +113,8 @@ km_type_two = KMeans(n_clusters=2,
 random_state=2).fit_predict(x_type_two)
 plt.scatter(x_type_two[:,0], x_type_two[:,1], c=km_type_two)
 ```
+
+Here, we have partitioned our dataset into 2 clusters, but they are unfortunately quite different from our original classes. We'll discuss one possible solution to this issue in a later section.
 
 ### Using reduced training data (n=500)
 
@@ -133,6 +137,11 @@ km_type_two = KMeans(n_clusters=2,
 random_state=2).fit_predict(x_type_two[-M:])
 plt.scatter(x_type_two[-M:,0], x_type_two[-M:,1], c=km_type_two)
 ```
+
+We can see that with much less data, our classifier is still functionally identical to our previous design.
+
+Purpose
+-------
 
 The overall purpose of this code was to generate two different datasets, train a K-means model to identify clusters, and then plot the membership of values in these clusters.
 
