@@ -136,6 +136,8 @@ plt.scatter(x_type_two[-M:,0], x_type_two[-M:,1], c=km_type_two)
 
 The overall purpose of this code was to generate two different datasets, train a K-means model to identify clusters, and then plot the membership of values in these clusters.
 
+One observation is that this works well when we are looking for the correct number of clusters. For our second dataset, we have four distinct visible clusters, but we are only looking for two. This creates a poor classifier and much of our data is grouped improperly.
+
 Impact of Cluster δ
 ===================
 
