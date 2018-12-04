@@ -12,10 +12,8 @@ We can extract the source code from the supplied notebook quite easily:
 import json
 
 with open('pythonKMC.ipynb') as nb:
-  content = json.load(nb)
-  src = [''.join(c['source']) for c in content['cells']]
-
-[print(line) for line in src[:2]]
+  src = [''.join(c['source']) for c in json.load(nb)['cells']]
+  [print(line) for line in src[:4]]
 ```
 …
 
